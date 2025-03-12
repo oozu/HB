@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - Agrega al Carrito</title>
+    <link rel="stylesheet" href="pagina3.css">
+    <script defer src="pagina3.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🛍️ Tienda Especial</h1>
+        <button onclick="toggleCart()">🛒 <span id="cart-count">0</span></button>
+    </header>
+
+    <div class="product-list">
+        <div class="product" data-name="Una Hamburguesa" data-price="Gratis">
+            <img src="images (1).jpg" alt="Una Hamburguesa">
+            <h3>Una Hamburguesa</h3>
+            <p>Gratis</p>
+            <button onclick="addToCart(this)">Agregar al carrito</button>
+        </div>
+
+        <div class="product" data-name="Un Postre" data-price="Gratis">
+            <img src="bd-postre-en-vaso-dulce-leche.jpg.jpg" alt="Un Postre">
+            <h3>Un Postre</h3>
+            <p>Gratis</p>
+            <button onclick="addToCart(this)">Agregar al carrito</button>
+        </div>
+    </div>
+
+    <div class="cart-container" id="cart">
+        <div class="cart-header">🛒 Tu Carrito</div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <p>Total: <span id="cart-total">S/ 0.00</span></p>
+            <button onclick="finalizarCompra()">Hacer pedido</button>
+            <button onclick="toggleCart()">Cerrar</button>
+        </div>
+    </div>
+</body>
+</html>
