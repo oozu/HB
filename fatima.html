@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Fatima 💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #ffdde1, #ee9ca7);
+      font-family: 'Open Sans', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-y: auto; /* Permitir scroll en la página completa */
+    }
+    .envelope {
+      width: 400px;
+      height: 300px;
+      background: linear-gradient(120deg, #fff8f0, #ffe2d1);
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform-origin: center;
+      animation: pulse 1.5s infinite alternate;
+    }
+    .envelope:hover {
+      animation: none;
+    }
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.05);
+      }
+    }
+    .flap {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(120deg, #ffc2a8, #ff9c8c);
+      position: absolute;
+      top: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      transform-origin: top;
+      transition: transform 0.8s ease-in-out;
+    }
+    .letter {
+      width: 90%;
+      height: 300px; /* Altura fija */
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow-y: auto; /* Scroll interno para la carta */
+      position: absolute;
+      top: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: height 0.8s ease-in-out;
+      font-size: 1em;
+      line-height: 1.5;
+      color: #333;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .envelope.open .flap {
+      transform: rotateX(-180deg);
+    }
+    .envelope.open .letter {
+      opacity: 1;
+      pointer-events: all;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5em;
+      text-align: center;
+      color: #c94f7c;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope" onclick="openEnvelope()">
+    <div class="flap"></div>
+    <div class="letter">
+      <h1>Para Fatima:</h1>
+      Holi Fattima Maribel, como siempre te llamaba para llamar tu atención kajshdjasd. Esto lo estoy escribiendo después de que fuiste a dormir y me dijiste todo.
+
+La verdad, alguna parte de mí ya me lo veía venir, porque Evelin un día, después de salir a comer los 4, me dijo algo como que te rechazaron. No le tomé mucha importancia, pero ya me lo suponía. Quería creer que no, pero bueno... como digo yo y lo dice mi madre: "las cosas pasan por algo".
+
+Te estoy programando esto porque soy malo con las conversaciones y creo que después de esto no responderé en un buen tiempo... o quizás sí. Te pido perdón por eso y también por las veces que no te respondía por estar ocupado.
+
+Eres una chica increíble desde que te conocí por Facebook cuando estabas en el COAR. Aunque dudé si me gustabas o no, luego me di cuenta que sí era verdad. Sonreía cada vez que me hablabas y eso era muy bonito.
+
+Luego nos apartamos mucho, y mis sentimientos se habían ido en su mayoría. Pero comenzamos a hablar mucho en estas vacaciones, uhmm con un horario kajshdjkasd. Luego pasó lo de la fiesta, y lo de decir que me gustaba tu hermana... Me puse a conversar conmigo mismo y me di cuenta de que la persona que me gustaba, con la que disfrutaba hablar, eras tú.
+
+Aunque tu hermana me gustó físicamente a primera impresión... asjkdhjasdhasd. Las hermanas García Prado matando corazones, "cositas", como tú dices.
+
+Gracias de verdad por haber conversado conmigo, y perdona por los inconvenientes que te hice pasar cuando estaba ebrio. De verdad, perdonnn.
+
+Ahora que me puse a pensar, siento que me convertí en una persona que no los vale. Y bueno, sí es cierto. Después de lo que me dijiste, sentí algo muy feo... pero de eso tú no te preocupes, ya se me pasará. Siempre supero todo, con el tiempo lo hago.
+
+Quiero que sepas que cualquier cosa me tienes para responder cualquier duda o inquietud. También te prometo que este ciclo estudiaré mucho (no estudiaba, kajshdjasd).
+
+Esta carta no es tan profunda como me gustaría, pero al menos transmite lo que siento.
+
+Cuídate mucho, sé muy feliz, lee los mangas que te regalé, estudia bastante... Y espero que algún día llegue el chico indicado, sin que lo dudes.
+
+Me sé retirar y como le dije a Evelin, me voy con la frente en alto.
+
+🌸 Suerte en todo, Fatima Maribel García Prado.
+    </div>
+  </div>
+  <script>
+    function openEnvelope() {
+      const envelope = document.querySelector('.envelope');
+      envelope.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
