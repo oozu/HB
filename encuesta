@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Personal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #1e90ff;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin: 20px 0;
+            text-align: left;
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .options-container {
+            margin: 10px 0;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #1c86ee;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 80%;
+        }
+        .modal-content h2 {
+            color: red;
+            margin-top: 0;
+        }
+        .modal-content button {
+            background-color: #ff4444;
+        }
+        .modal-content button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encuesta Personal</h1>
+        <form id="surveyForm">
+            <!-- Pregunta 1 -->
+            <div class="question" id="q1">
+                <label>1. ¿Cuándo nací?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "29 de marzo del 2006"},
+                    {"value": "wrong", "text": "15 de abril del 2005"},
+                    {"value": "wrong", "text": "10 de octubre del 2007"},
+                    {"value": "wrong", "text": "22 de diciembre del 2004"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="question" id="q2">
+                <label>2. ¿Cuál es mi color favorito?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "Azul"},
+                    {"value": "wrong", "text": "Rojo"},
+                    {"value": "wrong", "text": "Verde"},
+                    {"value": "wrong", "text": "Amarillo"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="question" id="q3">
+                <label>3. ¿Cuál es mi comida favorita?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "Causa de pollo"},
+                    {"value": "wrong", "text": "Ceviche"},
+                    {"value": "wrong", "text": "Lomo saltado"},
+                    {"value": "wrong", "text": "Ají de gallina"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="question" id="q4">
+                <label>4. ¿En qué año nos conocimos?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "2023"},
+                    {"value": "wrong", "text": "2021"},
+                    {"value": "wrong", "text": "2022"},
+                    {"value": "wrong", "text": "2024"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="question" id="q5">
+                <label>5. ¿Qué estudio?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "Derecho"},
+                    {"value": "wrong", "text": "Medicina"},
+                    {"value": "wrong", "text": "Ingeniería"},
+                    {"value": "wrong", "text": "Arquitectura"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="question" id="q6">
+                <label>6. ¿Dónde estudié primaria?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "Virgen de Fátima"},
+                    {"value": "wrong", "text": "San José"},
+                    {"value": "wrong", "text": "Santa María"},
+                    {"value": "wrong", "text": "Sagrado Corazón"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <!-- Pregunta 7 (Múltiple) -->
+            <div class="question" id="q7">
+                <label>7. ¿Qué me gusta? (Selecciona todas las que apliquen)</label>
+                <div class="options-container" data-options='[
+                    {"value": "jugar", "text": "Jugar", "correct": true},
+                    {"value": "programar", "text": "Programar", "correct": true},
+                    {"value": "bailar", "text": "Bailar", "correct": false},
+                    {"value": "cocinar", "text": "Cocinar", "correct": false}
+                ]' data-type="checkbox"></div>
+            </div>
+
+            <!-- Pregunta 8 -->
+            <div class="question" id="q8">
+                <label>8. ¿Cómo te llamo?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "Fátima Maribel"},
+                    {"value": "wrong", "text": "Fat"},
+                    {"value": "wrong", "text": "Fati"},
+                    {"value": "wrong", "text": "Mari"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <!-- Pregunta 9 -->
+            <div class="question" id="q9">
+                <label>9. ¿Cuánto tiempo demoro en responder?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "2 minutos"},
+                    {"value": "wrong", "text": "5 minutos"},
+                    {"value": "wrong", "text": "1 minuto"},
+                    {"value": "wrong", "text": "10 minutos"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <!-- Pregunta 10 -->
+            <div class="question" id="q10">
+                <label>10. ¿Cuál es mi postre favorito?</label>
+                <div class="options-container" data-options='[
+                    {"value": "correct", "text": "Torta de 3 leches"},
+                    {"value": "wrong", "text": "Cheesecake"},
+                    {"value": "wrong", "text": "Flan"},
+                    {"value": "wrong", "text": "Alfajores"}
+                ]' data-type="radio"></div>
+            </div>
+
+            <button type="button" id="nextBtn">Siguiente</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <h2>¡Fallaste!</h2>
+            <p>Respuesta incorrecta. Debes comenzar desde la primera pregunta.</p>
+            <button id="closeModal">Intentar de nuevo</button>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 10;
+        const questions = document.querySelectorAll('.question');
+        const nextBtn = document.getElementById('nextBtn');
+        const form = document.getElementById('surveyForm');
+        const resultDiv = document.getElementById('result');
+        const errorModal = document.getElementById('errorModal');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        // Función para mezclar un array (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Función para renderizar opciones dinámicamente
+        function renderOptions(questionId) {
+            const question = document.getElementById(`q${questionId}`);
+            const container = question.querySelector('.options-container');
+            const optionsData = JSON.parse(container.getAttribute('data-options'));
+            const type = container.getAttribute('data-type');
+            container.innerHTML = ''; // Limpiar opciones anteriores
+
+            // Mezclar opciones
+            const shuffledOptions = shuffleArray([...optionsData]);
+
+            // Generar HTML para las opciones
+            shuffledOptions.forEach(option => {
+                const input = document.createElement('input');
+                input.type = type;
+                input.name = `q${questionId}`;
+                input.value = option.value;
+                if (type === 'checkbox') {
+                    input.setAttribute('data-correct', option.correct);
+                }
+                const label = document.createElement('label');
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(option.text));
+                label.appendChild(document.createElement('br'));
+                container.appendChild(label);
+            });
+        }
+
+        // Inicializar primera pregunta
+        renderOptions(1);
+        document.getElementById('q1').classList.add('active');
+
+        nextBtn.addEventListener('click', function() {
+            const currentQ = document.getElementById(`q${currentQuestion}`);
+            let isCorrect = false;
+
+            if (currentQuestion === 7) {
+                // Verificar pregunta 7 (checkboxes)
+                const selected = Array.from(currentQ.querySelectorAll('input[name="q7"]:checked'));
+                const correctAnswers = Array.from(currentQ.querySelectorAll('input[data-correct="true"]')).map(input => input.value);
+                const selectedValues = selected.map(input => input.value);
+                isCorrect = correctAnswers.every(val => selectedValues.includes(val)) && selectedValues.length === correctAnswers.length;
+            } else {
+                // Verificar preguntas con radio buttons
+                const selected = currentQ.querySelector(`input[name="q${currentQuestion}"]:checked`);
+                isCorrect = selected && selected.value === 'correct';
+            }
+
+            if (!isCorrect) {
+                // Mostrar modal de error
+                errorModal.style.display = 'flex';
+                return;
+            }
+
+            // Avanzar a la siguiente pregunta o mostrar resultado
+            if (currentQuestion < totalQuestions) {
+                currentQ.classList.remove('active');
+                currentQuestion++;
+                renderOptions(currentQuestion); // Renderizar opciones mezcladas
+                document.getElementById(`q${currentQuestion}`).classList.add('active');
+                form.reset(); // Limpiar selecciones
+            } else {
+                // Mostrar contraseña
+                resultDiv.textContent = '¡Todas las respuestas son correctas! La contraseña es: FatimaMaribel0707';
+                nextBtn.style.display = 'none';
+            }
+        });
+
+        // Cerrar modal y reiniciar encuesta
+        closeModalBtn.addEventListener('click', function() {
+            errorModal.style.display = 'none';
+            currentQuestion = 1;
+            questions.forEach(q => q.classList.remove('active'));
+            renderOptions(1); // Renderizar opciones mezcladas para la primera pregunta
+            document.getElementById('q1').classList.add('active');
+            form.reset();
+            resultDiv.textContent = '';
+            nextBtn.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
